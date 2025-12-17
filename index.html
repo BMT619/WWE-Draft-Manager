@@ -19,6 +19,15 @@
 <body>
     <div id="root"></div>
 
+    <footer class="text-center text-gray-300 py-4 bg-black bg-opacity-40">
+        <span id="copyright"></span>
+    </footer>
+
+
+    <script>
+        document.getElementById('copyright').textContent = `© ${new Date().getFullYear()} Bryan Teves`;
+    </script>
+
     <script type="text/babel">
         const { useState } = React;
 
