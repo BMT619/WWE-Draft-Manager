@@ -1,6 +1,6 @@
 # ⭐ WWE Draft Manager ⭐
 
-A simple, interactive web application to create custom WWE brand drafts for your WWE 2K25 Universe Mode or fantasy booking.
+A simple, interactive web application to create custom WWE brand drafts for your WWE Universe Mode or fantasy booking.
 
 ## 📋 Table of Contents
 - [Installation](#installation)
@@ -176,7 +176,7 @@ The draft ensures fair distribution across all brands:
 
 ## 🎮 Perfect For
 
-- WWE 2K25 Universe Mode roster planning
+- WWE Universe Mode roster planning
 - Fantasy booking drafts
 - Streaming/YouTube content creation
 - Wrestling tabletop RPG campaigns
@@ -192,6 +192,6 @@ This is a free tool created for wrestling fans. Feel free to use, share, and mod
 
 ## 🤝 Support
 
-If you encounter any issues or have suggestions for improvements, feel free to provide feedback!
+If you encounter any issues or have suggestions for improvement, please feel free to provide feedback.
 
 **Enjoy your drafting! 🏆**
