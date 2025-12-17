@@ -3,7 +3,6 @@
 A simple, interactive web application to create custom WWE brand drafts for your WWE Universe Mode or fantasy booking.
 
 ## 📋 Table of Contents
-- [Installation](#installation)
 - [How to Use](#how-to-use)
 - [Features](#features)
 - [Tips & Best Practices](#tips--best-practices)
@@ -11,14 +10,7 @@ A simple, interactive web application to create custom WWE brand drafts for your
 
 ---
 
-## 🚀 Installation
-
 ### Quick Start (No Installation Required!)
-
-1. **Download the HTML file** (`wwe-draft.html`)
-2. **Save it** anywhere on your computer
-3. **Double-click** the file to open it in your web browser
-4. That's it! The app runs entirely in your browser - no server, no installation needed.
 
 ### Requirements
 - Any modern web browser (Chrome, Firefox, Safari, Edge)
