@@ -23,7 +23,6 @@
         <span id="copyright"></span>
     </footer>
 
-
     <script>
         document.getElementById('copyright').textContent = `© ${new Date().getFullYear()} Bryan Teves`;
     </script>
@@ -64,6 +63,7 @@
             const [superstars, setSuperstars] = useState([]);
             const [currentName, setCurrentName] = useState('');
             const [currentType, setCurrentType] = useState('solo');
+            const [currentGender, setCurrentGender] = useState('male');
             const [draftResults, setDraftResults] = useState(null);
 
             const handleNumShowsChange = (e) => {
@@ -84,7 +84,7 @@
 
             const addSuperstar = () => {
                 if (currentName.trim()) {
-                    setSuperstars([...superstars, { name: currentName.trim(), type: currentType }]);
+                    setSuperstars([...superstars, { name: currentName.trim(), type: currentType, gender: currentGender }]);
                     setCurrentName('');
                 }
             };
@@ -99,36 +99,64 @@
                     return;
                 }
 
-                // Separate by type
-                const solos = superstars.filter(s => s.type === 'solo');
-                const tagTeams = superstars.filter(s => s.type === 'tag');
-                const factions = superstars.filter(s => s.type === 'faction');
+                // Separate by type and gender
+                const maleSolos = superstars.filter(s => s.type === 'solo' && s.gender === 'male');
+                const femaleSolos = superstars.filter(s => s.type === 'solo' && s.gender === 'female');
+                const maleTagTeams = superstars.filter(s => s.type === 'tag' && s.gender === 'male');
+                const femaleTagTeams = superstars.filter(s => s.type === 'tag' && s.gender === 'female');
+                const maleFactions = superstars.filter(s => s.type === 'faction' && s.gender === 'male');
+                const femaleFactions = superstars.filter(s => s.type === 'faction' && s.gender === 'female');
 
                 // Shuffle each category
-                const shuffledSolos = [...solos].sort(() => Math.random() - 0.5);
-                const shuffledTags = [...tagTeams].sort(() => Math.random() - 0.5);
-                const shuffledFactions = [...factions].sort(() => Math.random() - 0.5);
+                const shuffledMaleSolos = [...maleSolos].sort(() => Math.random() - 0.5);
+                const shuffledFemaleSolos = [...femaleSolos].sort(() => Math.random() - 0.5);
+                const shuffledMaleTags = [...maleTagTeams].sort(() => Math.random() - 0.5);
+                const shuffledFemaleTags = [...femaleTagTeams].sort(() => Math.random() - 0.5);
+                const shuffledMaleFactions = [...maleFactions].sort(() => Math.random() - 0.5);
+                const shuffledFemaleFactions = [...femaleFactions].sort(() => Math.random() - 0.5);
 
                 // Initialize results
                 const results = {};
                 showNames.forEach(show => {
-                    results[show] = { solos: [], tags: [], factions: [] };
+                    results[show] = { 
+                        maleSolos: [], 
+                        femaleSolos: [],
+                        maleTags: [], 
+                        femaleTags: [],
+                        maleFactions: [],
+                        femaleFactions: []
+                    };
                 });
 
                 // Distribute evenly
-                shuffledSolos.forEach((s, i) => {
+                shuffledMaleSolos.forEach((s, i) => {
                     const show = showNames[i % showNames.length];
-                    results[show].solos.push(s.name);
+                    results[show].maleSolos.push(s.name);
                 });
 
-                shuffledTags.forEach((s, i) => {
+                shuffledFemaleSolos.forEach((s, i) => {
                     const show = showNames[i % showNames.length];
-                    results[show].tags.push(s.name);
+                    results[show].femaleSolos.push(s.name);
                 });
 
-                shuffledFactions.forEach((s, i) => {
+                shuffledMaleTags.forEach((s, i) => {
                     const show = showNames[i % showNames.length];
-                    results[show].factions.push(s.name);
+                    results[show].maleTags.push(s.name);
+                });
+
+                shuffledFemaleTags.forEach((s, i) => {
+                    const show = showNames[i % showNames.length];
+                    results[show].femaleTags.push(s.name);
+                });
+
+                shuffledMaleFactions.forEach((s, i) => {
+                    const show = showNames[i % showNames.length];
+                    results[show].maleFactions.push(s.name);
+                });
+
+                shuffledFemaleFactions.forEach((s, i) => {
+                    const show = showNames[i % showNames.length];
+                    results[show].femaleFactions.push(s.name);
                 });
 
                 setDraftResults(results);
@@ -232,6 +260,32 @@
                                             </div>
                                         </div>
 
+                                        <div>
+                                            <label className="block mb-2 font-semibold">Division:</label>
+                                            <div className="flex gap-4 flex-wrap">
+                                                <label className="flex items-center cursor-pointer">
+                                                    <input
+                                                        type="radio"
+                                                        value="male"
+                                                        checked={currentGender === 'male'}
+                                                        onChange={(e) => setCurrentGender(e.target.value)}
+                                                        className="mr-2"
+                                                    />
+                                                    <span>Men's Division</span>
+                                                </label>
+                                                <label className="flex items-center cursor-pointer">
+                                                    <input
+                                                        type="radio"
+                                                        value="female"
+                                                        checked={currentGender === 'female'}
+                                                        onChange={(e) => setCurrentGender(e.target.value)}
+                                                        className="mr-2"
+                                                    />
+                                                    <span>Women's Division</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
                                         <button
                                             onClick={addSuperstar}
                                             className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2"
@@ -251,7 +305,7 @@
                                                         <div>
                                                             <span className="font-semibold">{star.name}</span>
                                                             <span className="ml-3 text-sm text-gray-400">
-                                                                ({star.type === 'solo' ? 'Solo' : star.type === 'tag' ? 'Tag Team' : 'Faction'})
+                                                                ({star.gender === 'male' ? "Men's" : "Women's"} - {star.type === 'solo' ? 'Solo' : star.type === 'tag' ? 'Tag Team' : 'Faction'})
                                                             </span>
                                                         </div>
                                                         <button
@@ -285,36 +339,83 @@
                                         <div key={show} className="bg-gray-800 bg-opacity-50 backdrop-blur rounded-lg p-6 border border-yellow-500">
                                             <h2 className="text-3xl font-bold mb-4 text-yellow-400">🏆 {show}</h2>
                                             
-                                            {data.solos.length > 0 && (
-                                                <div className="mb-4">
-                                                    <h3 className="text-xl font-semibold mb-2 text-blue-300">Solo Superstars:</h3>
-                                                    <ul className="space-y-1">
-                                                        {data.solos.map((name, i) => (
-                                                            <li key={i} className="text-gray-200">• {name}</li>
-                                                        ))}
-                                                    </ul>
+                                            {/* Men's Division */}
+                                            {(data.maleSolos.length > 0 || data.maleTags.length > 0 || data.maleFactions.length > 0) && (
+                                                <div className="mb-6">
+                                                    <h3 className="text-2xl font-bold mb-3 text-blue-400">👔 Men's Division</h3>
+                                                    
+                                                    {data.maleSolos.length > 0 && (
+                                                        <div className="mb-3">
+                                                            <h4 className="text-lg font-semibold mb-2 text-blue-300">Solo Superstars:</h4>
+                                                            <ul className="space-y-1 ml-4">
+                                                                {data.maleSolos.map((name, i) => (
+                                                                    <li key={i} className="text-gray-200">• {name}</li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    )}
+
+                                                    {data.maleTags.length > 0 && (
+                                                        <div className="mb-3">
+                                                            <h4 className="text-lg font-semibold mb-2 text-green-300">Tag Teams:</h4>
+                                                            <ul className="space-y-1 ml-4">
+                                                                {data.maleTags.map((name, i) => (
+                                                                    <li key={i} className="text-gray-200">• {name}</li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    )}
+
+                                                    {data.maleFactions.length > 0 && (
+                                                        <div>
+                                                            <h4 className="text-lg font-semibold mb-2 text-purple-300">Factions:</h4>
+                                                            <ul className="space-y-1 ml-4">
+                                                                {data.maleFactions.map((name, i) => (
+                                                                    <li key={i} className="text-gray-200">• {name}</li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             )}
 
-                                            {data.tags.length > 0 && (
-                                                <div className="mb-4">
-                                                    <h3 className="text-xl font-semibold mb-2 text-green-300">Tag Teams:</h3>
-                                                    <ul className="space-y-1">
-                                                        {data.tags.map((name, i) => (
-                                                            <li key={i} className="text-gray-200">• {name}</li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            )}
-
-                                            {data.factions.length > 0 && (
+                                            {/* Women's Division */}
+                                            {(data.femaleSolos.length > 0 || data.femaleTags.length > 0 || data.femaleFactions.length > 0) && (
                                                 <div>
-                                                    <h3 className="text-xl font-semibold mb-2 text-purple-300">Factions:</h3>
-                                                    <ul className="space-y-1">
-                                                        {data.factions.map((name, i) => (
-                                                            <li key={i} className="text-gray-200">• {name}</li>
-                                                        ))}
-                                                    </ul>
+                                                    <h3 className="text-2xl font-bold mb-3 text-pink-400">👗 Women's Division</h3>
+                                                    
+                                                    {data.femaleSolos.length > 0 && (
+                                                        <div className="mb-3">
+                                                            <h4 className="text-lg font-semibold mb-2 text-pink-300">Solo Superstars:</h4>
+                                                            <ul className="space-y-1 ml-4">
+                                                                {data.femaleSolos.map((name, i) => (
+                                                                    <li key={i} className="text-gray-200">• {name}</li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    )}
+
+                                                    {data.femaleTags.length > 0 && (
+                                                        <div className="mb-3">
+                                                            <h4 className="text-lg font-semibold mb-2 text-green-300">Tag Teams:</h4>
+                                                            <ul className="space-y-1 ml-4">
+                                                                {data.femaleTags.map((name, i) => (
+                                                                    <li key={i} className="text-gray-200">• {name}</li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    )}
+
+                                                    {data.femaleFactions.length > 0 && (
+                                                        <div>
+                                                            <h4 className="text-lg font-semibold mb-2 text-purple-300">Factions:</h4>
+                                                            <ul className="space-y-1 ml-4">
+                                                                {data.femaleFactions.map((name, i) => (
+                                                                    <li key={i} className="text-gray-200">• {name}</li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             )}
                                         </div>
