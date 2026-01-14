@@ -1,189 +1,121 @@
-# ⭐ WWE Draft Manager ⭐
+# WWE Draft Manager
 
-A simple, interactive web application to create custom WWE brand drafts for your WWE Universe Mode or fantasy booking.
+A web-based application for conducting custom WWE brand drafts with support for multiple divisions and roster types.
 
-## 📋 Table of Contents
-- [How to Use](#how-to-use)
-- [Features](#features)
-- [Tips & Best Practices](#tips--best-practices)
-- [Troubleshooting](#troubleshooting)
+## Version History
 
----
+### Version 1.0 - Initial Release
+**Release Date:** December 17, 2025
 
-### Quick Start (No Installation Required!)
+The first version of WWE Draft Manager provided basic draft functionality:
 
-### Requirements
-- Any modern web browser (Chrome, Firefox, Safari, Edge)
-- No internet connection required after the first load
-- Works on Windows, Mac, and Linux
+- **Core Features:**
+  - Configure custom number of show brands (1-10)
+  - Customize brand names (RAW, SmackDown, NXT, etc.)
+  - Add superstars to draft pool
+  - Basic solo superstar drafting
+  - Random distribution across all brands
+  - Re-draft functionality
+  - Reset and start over option
 
----
+- **Basic Functionality:**
+  - Simple name input for superstars
+  - Equal distribution algorithm
+  - Clean visual results display
 
-## 📖 How to Use
+### Version 1.1 - Women's Division & Roster Type Expansion
+**Release Date:** January 14, 2026
 
-### Step 1: Configure Your Brands
+Version 1.1 introduced comprehensive roster management with gender divisions and multiple roster types:
 
-1. **Set Number of Brands**: Enter how many show brands you want (1-10)
-   - Default is 4 brands: RAW, SmackDown, NXT, ECW
-   
-2. **Name Your Brands**: Customize each brand name
-   - Examples: RAW, SmackDown, NXT, ECW, Main Event, 205 Live, etc.
+- **New Features:**
+  - **Women's Division Support**
+    - Separate Men's and Women's division tracking
+    - Independent drafting for each division
+    - Visual distinction between divisions (👔 Men's / 👗 Women's)
+  
+  - **Roster Type Categories**
+    - Solo Superstars (singles competitors)
+    - Tag Teams (2-person teams)
+    - Factions (3+ person groups)
+  
+  - **Enhanced Distribution**
+    - Six separate categories per brand:
+      - Men's Solo Superstars
+      - Men's Tag Teams
+      - Men's Factions
+      - Women's Solo Superstars
+      - Women's Tag Teams
+      - Women's Factions
+    - Equal distribution within each category
+    - Maintains balance across all brands
 
-### Step 2: Add Superstars & Teams
+- **UI Improvements:**
+  - Division selector (Men's/Women's)
+  - Type selector (Solo/Tag Team/Faction)
+  - Enhanced draft pool display with category labels
+  - Organized results view with division headers
+  - Color-coded categories for easy identification
 
-1. **Enter a Name**: Type the superstar or team name in the text field
-   - Examples: "Roman Reigns", "The Usos", "The Bloodline"
+## Features
 
-2. **Select Type**: Choose from three options:
-   - **Solo Superstar**: Individual wrestlers (e.g., John Cena, CM Punk)
-   - **Tag Team (2 people)**: Two-person teams (e.g., The Usos, New Day)
-   - **Faction (3+ people)**: Groups of 3 or more (e.g., The Bloodline, Judgment Day)
+### Brand Configuration
+- Set number of show brands (1-10)
+- Fully customizable brand names
+- Dynamic brand name input fields
 
-3. **Add to Draft Pool**: Click the "Add to Draft Pool" button or press Enter
-   - You can add as many superstars/teams as you want
-   - Remove any entry by clicking the trash icon next to it
+### Superstar Management
+- Add unlimited superstars to draft pool
+- Categorize by division (Men's/Women's)
+- Categorize by type (Solo/Tag Team/Faction)
+- Remove individual superstars from pool
+- View complete draft pool with categories
 
-### Step 3: Run the Draft
+### Draft System
+- Random shuffle algorithm for fair distribution
+- Even distribution across all brands
+- Separate shuffling for each category
+- Re-draft option to generate new results
+- Reset functionality to start fresh
 
-1. **Click "RUN DRAFT"** when you're ready
-   - The app will randomly distribute all entries evenly across all brands
-   - Each type (solos, tag teams, factions) is distributed separately and evenly
+### Results Display
+- Organized by brand
+- Separated by division (Men's/Women's)
+- Grouped by type (Solo/Tag Team/Faction)
+- Clean, color-coded presentation
+- Trophy icons for brand headers
 
-2. **View Results**: See your draft results organized by brand
-   - Each brand shows:
-     - Solo Superstars (in blue)
-     - Tag Teams (in green)
-     - Factions (in purple)
+## Technical Details
 
-### Step 4: Refine or Start Over
+- **Framework:** React 18.2.0
+- **Styling:** Tailwind CSS
+- **Icons:** Custom SVG components (Lucide-inspired)
+- **Build:** Standalone HTML with embedded JavaScript
 
-- **Re-Draft**: Click to shuffle the same roster into new brand assignments
-- **Start Over**: Clear everything and begin a new draft from scratch
+## Usage
 
----
+1. **Configure Brands**
+   - Set the number of show brands
+   - Name each brand
 
-## ✨ Features
+2. **Add Superstars**
+   - Enter superstar or team name
+   - Select type (Solo/Tag Team/Faction)
+   - Choose division (Men's/Women's)
+   - Click "Add to Draft Pool"
 
-### Even Distribution
-The draft ensures fair distribution across all brands:
-- If you have 20 solo superstars and 4 brands → each brand gets 5 solo superstars
-- If you have 12 tag teams and 3 brands → each brand gets 4 tag teams
-- Each type is distributed independently
+3. **Run Draft**
+   - Click "RUN DRAFT" to execute the draft
+   - View results organized by brand and division
 
-### Randomization
-- Every draft produces different results
-- Uses true random shuffling for unpredictable outcomes
+4. **Manage Results**
+   - Re-Draft: Generate new random distribution
+   - Start Over: Clear all data and begin fresh
 
-### Flexible Configuration
-- Support for 1-10 brands
-- Unlimited superstars/teams
-- Three distinct categories for realistic roster building
+## Copyright
 
-### User-Friendly Interface
-- Clean, modern design with WWE-inspired colors
-- Easy-to-use controls
-- Mobile responsive
-- No account or login required
-
----
-
-## 💡 Tips & Best Practices
-
-### Planning Your Roster
-
-1. **Balance Your Roster**: Try to add a good mix of:
-   - Main event stars
-   - Mid-card talent
-   - Tag teams
-   - Factions
-
-2. **Consider Brand Identity**: After drafting, you might want to:
-   - Manually adjust if a brand feels too stacked
-   - Re-draft until you get a distribution you like
-
-3. **Use Realistic Numbers**: For a balanced Universe Mode:
-   - 15-25 solo superstars per brand
-   - 4-6 tag teams per brand
-   - 1-3 factions per brand
-
-### Naming Conventions
-
-- **Tag Teams**: Enter the team name (e.g., "The Usos" not "Jey Uso & Jimmy Uso")
-- **Factions**: Use the faction name (e.g., "The Bloodline" not individual members)
-- **Solo Superstars**: Use ring names or real names consistently
-
-### Workflow Suggestions
-
-1. **Prepare a List**: Write down your roster beforehand
-2. **Add by Category**: Add all solos first, then tags, then factions
-3. **Review Before Drafting**: Double-check your pool before running the draft
-4. **Save Your Results**: Take a screenshot or write down the results for reference
+© 2025 Bryan Teves
 
 ---
 
-## 🔧 Troubleshooting
-
-### The page won't load
-- Make sure you saved the file with the `.html` extension
-- Try opening in a different browser
-- Check that JavaScript is enabled in your browser
-
-### "RUN DRAFT" button is disabled
-- You need to add at least one superstar/team to the draft pool first
-- Make sure you have at least one brand configured
-
-### The draft seems uneven
-- The app distributes entries round-robin style
-- If you have 10 superstars and 3 brands, one brand will have 4, two will have 3
-- This is mathematically unavoidable and as fair as possible
-
-### I want to export my results
-- Take a screenshot of the results page
-- Copy and paste the results into a text document
-- Use the browser's print function to save as PDF
-
-### The page looks broken
-- Make sure you copied the entire HTML file
-- Try clearing your browser cache
-- Ensure you have an internet connection for the first load (to load external libraries)
-
----
-
-## 📝 Example Usage
-
-### Quick Example
-
-1. Set brands: RAW, SmackDown, NXT (3 brands)
-2. Add superstars:
-   - Solo: Roman Reigns, Cody Rhodes, Seth Rollins, CM Punk, Drew McIntyre, LA Knight
-   - Tag: The Usos, DIY, New Day
-   - Faction: The Bloodline
-3. Click "RUN DRAFT"
-4. Result example:
-   - **RAW**: Roman Reigns, Drew McIntyre | The Usos | The Bloodline
-   - **SmackDown**: Cody Rhodes, LA Knight | DIY
-   - **NXT**: Seth Rollins, CM Punk | New Day
-
----
-
-## 🎮 Perfect For
-
-- WWE Universe Mode roster planning
-- Fantasy booking drafts
-- Streaming/YouTube content creation
-- Wrestling tabletop RPG campaigns
-- Fun with friends who love wrestling
-
----
-
-## 📄 License
-
-This is a free tool created for wrestling fans. Feel free to use, share, and modify as you wish!
-
----
-
-## 🤝 Support
-
-If you encounter any issues or have suggestions for improvement, please feel free to provide feedback.
-
-**Enjoy your drafting! 🏆**
+*Create your perfect WWE brand split with balanced rosters across all divisions!*
